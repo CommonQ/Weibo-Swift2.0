@@ -12,6 +12,8 @@
 		8BA5BE691B66255200D8F2B9 /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5BE681B66255200D8F2B9 /* MessageTableViewController.swift */; };
 		8BA5BE6B1B66256200D8F2B9 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5BE6A1B66256200D8F2B9 /* ProfileTableViewController.swift */; };
 		8BA5BE6D1B66270700D8F2B9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5BE6C1B66270700D8F2B9 /* MainViewController.swift */; };
+		8BA5BE6F1B663C3800D8F2B9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5BE6E1B663C3800D8F2B9 /* BaseViewController.swift */; };
+		8BA5BE711B66565700D8F2B9 /* VisitorLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA5BE701B66565700D8F2B9 /* VisitorLoginView.swift */; };
 		8BBBF2041B6621A100F469C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBBF2031B6621A100F469C2 /* AppDelegate.swift */; };
 		8BBBF20B1B6621A100F469C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BBBF20A1B6621A100F469C2 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -22,6 +24,8 @@
 		8BA5BE681B66255200D8F2B9 /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
 		8BA5BE6A1B66256200D8F2B9 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		8BA5BE6C1B66270700D8F2B9 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		8BA5BE6E1B663C3800D8F2B9 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8BA5BE701B66565700D8F2B9 /* VisitorLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitorLoginView.swift; sourceTree = "<group>"; };
 		8BBBF2001B6621A100F469C2 /* 菜菜微博.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "菜菜微博.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BBBF2031B6621A100F469C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BBBF20A1B6621A100F469C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				8BA5BE6C1B66270700D8F2B9 /* MainViewController.swift */,
+				8BA5BE6E1B663C3800D8F2B9 /* BaseViewController.swift */,
+				8BA5BE701B66565700D8F2B9 /* VisitorLoginView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -209,6 +215,8 @@
 				8BA5BE691B66255200D8F2B9 /* MessageTableViewController.swift in Sources */,
 				8BA5BE6D1B66270700D8F2B9 /* MainViewController.swift in Sources */,
 				8BA5BE651B66253B00D8F2B9 /* DiscoverTableViewController.swift in Sources */,
+				8BA5BE711B66565700D8F2B9 /* VisitorLoginView.swift in Sources */,
+				8BA5BE6F1B663C3800D8F2B9 /* BaseViewController.swift in Sources */,
 				8BBBF2041B6621A100F469C2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
