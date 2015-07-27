@@ -3,14 +3,13 @@
 
 开发环境:xcode7 beta4 / ios9.0 
 
+使用框架:AFNetworking
+
 新浪微博接口地址
 
 微博开放平台地址 http://open.weibo.com
 
 微博接口文档地址 http://open.weibo.com/wiki/微博API
-
-使用框架:
-AFNetworking
 
 ##目标
 
