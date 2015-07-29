@@ -13,7 +13,7 @@ class ProfileTableViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        VisitorView?.setupInfo(false, imageName: "visitordiscover_image_profile", desString: "登录后，你的微博、相册、个人资料会显示在这里，展示给别人")
+        visitorView?.setupInfo(false, imageName: "visitordiscover_image_profile", desString: "登录后，你的微博、相册、个人资料会显示在这里，展示给别人")
     }
 
     override func didReceiveMemoryWarning() {

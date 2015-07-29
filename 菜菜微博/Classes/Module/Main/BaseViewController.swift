@@ -8,10 +8,10 @@
 
 import UIKit
 
-class BaseViewController: UITableViewController {
+class BaseViewController: UITableViewController,VisitorLoginViewDelegate {
     
     var isLogin = false
-    var VisitorView:VisitorLoginView?
+    var visitorView:VisitorLoginView?
     
     /// 加载根控制器
     override func loadView() {
@@ -22,12 +22,24 @@ class BaseViewController: UITableViewController {
     /// 加载访客视图,并且设置nav控制器的左右按钮
     private func setupVisitorView() {
         
-        VisitorView = VisitorLoginView()
-        view = VisitorView
+        visitorView = VisitorLoginView()
+        view = visitorView
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        visitorView?.delegate = self
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: "visitorLoginViewWillRegisitor")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "visitorLoginViewWillLogin")
         
     }
-
+    
+    // MARK: - 注册和登录按钮的点击事件
+    func visitorLoginViewWillRegisitor() {
+        
+        print("注册")
+    }
+    
+    func visitorLoginViewWillLogin() {
+        
+        print("登录")
+    }
 }

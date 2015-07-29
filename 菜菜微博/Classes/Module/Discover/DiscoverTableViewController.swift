@@ -13,7 +13,7 @@ class DiscoverTableViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        VisitorView?.setupInfo(false, imageName: "visitordiscover_image_message", desString: "登录后，别人评论你的微博，发给你的消息，都会在这里收到通知")
+        visitorView?.setupInfo(false, imageName: "visitordiscover_image_message", desString: "登录后，别人评论你的微博，发给你的消息，都会在这里收到通知")
 
     }
 

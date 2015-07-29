@@ -8,9 +8,16 @@
 
 import UIKit
 
+protocol VisitorLoginViewDelegate {
+    
+    func visitorLoginViewWillRegisitor()
+    func visitorLoginViewWillLogin()
+}
+
 class VisitorLoginView: UIView {
     
     var isHome:Bool?
+    var delegate:VisitorLoginViewDelegate?
     
     // MARK: - 加载UI
     override init(frame: CGRect) {
@@ -37,7 +44,6 @@ class VisitorLoginView: UIView {
         backgroundColor = UIColor(white: 0.93, alpha: 1)
         
         layoutUI()
-        
     }
     
     //判断是不是首页视图
@@ -69,6 +75,15 @@ class VisitorLoginView: UIView {
         
         iconView.layer.addAnimation(anim, forKey: nil)
     
+    }
+    
+    // MARK: - 按钮监听方法
+    func clickLoginButton() {
+        delegate?.visitorLoginViewWillLogin()
+    }
+    
+    func clickRegisterButton() {
+        delegate?.visitorLoginViewWillRegisitor()
     }
     
     // MARK: - 添加自动布局约束
@@ -158,6 +173,8 @@ class VisitorLoginView: UIView {
         registerBtn.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
         registerBtn.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
         
+        registerBtn.addTarget(self, action:"clickRegisterButton" , forControlEvents: UIControlEvents.TouchUpInside)
+        
         return registerBtn
     }()
     
@@ -169,6 +186,8 @@ class VisitorLoginView: UIView {
         loginBtn.setTitle("登录", forState: UIControlState.Normal)
         loginBtn.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
         loginBtn.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
+        
+        loginBtn.addTarget(self, action:"clickLoginButton" , forControlEvents: UIControlEvents.TouchUpInside)
         
         return loginBtn
         
