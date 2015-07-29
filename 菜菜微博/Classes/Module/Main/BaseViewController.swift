@@ -11,16 +11,19 @@ import UIKit
 class BaseViewController: UITableViewController {
     
     var isLogin = false
+    var VisitorView:VisitorLoginView?
     
-
+    /// 加载根控制器
     override func loadView() {
         
         isLogin ? super.loadView() : setupVisitorView()
     }
     
+    /// 加载访客视图,并且设置nav控制器的左右按钮
     private func setupVisitorView() {
         
-        view = VisitorLoginView()
+        VisitorView = VisitorLoginView()
+        view = VisitorView
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)

@@ -29,12 +29,14 @@ class MainViewController: UITabBarController {
         
     }
     
+    /// 撰写按钮的点击事件
     func clickcomposedBtn() {
         
         print("111")
         
     }
     
+    /// 添加撰写按钮
     private func addcomposedBtn() {
         
         let composedBtnW = tabBar.bounds.width / CGFloat(viewControllers!.count)
@@ -44,6 +46,7 @@ class MainViewController: UITabBarController {
         
     }
     
+    /// 批量添加子控制器
     private func addChildViewControllers() {
         
         addChildViewController(HomeTableViewController(), title: "首页", itemIcon: "tabbar_home")
@@ -53,6 +56,11 @@ class MainViewController: UITabBarController {
         addChildViewController(ProfileTableViewController(), title: "我", itemIcon: "tabbar_profile")
     }
     
+    /// 添加视图控制器
+    ///
+    /// :param: vc       视图控制器类型
+    /// :param: title    控制器名称
+    /// :param: itemIcon 控制器图标
     private func addChildViewController(vc:UIViewController,title:String,itemIcon:String) {
         
         vc.title = title
@@ -65,6 +73,7 @@ class MainViewController: UITabBarController {
    
     }
     
+    /// 懒加载撰写按钮
     lazy private var composedBtn:UIButton = {
         
         let composedBtn = UIButton()
