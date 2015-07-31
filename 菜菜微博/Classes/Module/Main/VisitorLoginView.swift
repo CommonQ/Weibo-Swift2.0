@@ -52,15 +52,9 @@ class VisitorLoginView: UIView {
         desLabel.text = desString
         iconView.image = UIImage(named: imageName)
         
-        isHome ? starAnimation() : noHome()
-    }
-    
-    // 不是首页视图的处理
-    func noHome() {
+        houseView.hidden = !isHome
         
-        sendSubviewToBack(maskIconView)
-        houseView.hidden = true
-    
+        isHome ? starAnimation() : sendSubviewToBack(maskIconView)
     }
     
     // MARK: - 给首页添加动画

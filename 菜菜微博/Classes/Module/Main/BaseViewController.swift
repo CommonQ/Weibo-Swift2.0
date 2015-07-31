@@ -35,11 +35,13 @@ class BaseViewController: UITableViewController,VisitorLoginViewDelegate {
     // MARK: - 注册和登录按钮的点击事件
     func visitorLoginViewWillRegisitor() {
         
-        print("注册")
+        
     }
     
     func visitorLoginViewWillLogin() {
         
-        print("登录")
+        let nav = UINavigationController(rootViewController: OAuthViewController())
+
+        presentViewController(nav, animated: true, completion: nil)
     }
 }

@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        window?.rootViewController = MainViewController()
+        window?.rootViewController = NewFeatureViewController()
         
         window?.makeKeyAndVisible()
         
