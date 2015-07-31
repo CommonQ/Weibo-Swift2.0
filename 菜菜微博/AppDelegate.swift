@@ -8,26 +8,71 @@
 
 import UIKit
 
+let rootViewControllerDisplay = "rootViewControllerDisplay"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var isNewVersion:Bool?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+
         UINavigationBar.appearance().tintColor = UIColor.orangeColor()
         
         UITabBar.appearance().tintColor = UIColor.orangeColor()
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        window?.rootViewController = NewFeatureViewController()
+        window?.rootViewController = displayDefaultRootViewController()
         
         window?.makeKeyAndVisible()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "switchMainController:", name: rootViewControllerDisplay, object: nil)
+        
         return true
+    }
+    
+    /// 根据通知来决定显示访客视图还是欢迎视图
+    func switchMainController(noti:NSNotification) {
+        
+        let mainVc:Bool = noti.object! as! Bool
+        
+        window?.rootViewController = mainVc ? MainViewController() : WelcomeViewController()
+    }
+    
+    /// 判断用户是否登录
+    ///
+    /// :returns: 没登录:返回访客界面,登录:返回新特性或者欢迎界面
+    func displayDefaultRootViewController() -> UIViewController {
+        
+        if !userAccount.isLogin {
+            
+            return MainViewController()
+            
+        } else {
+            
+            return judgeNewVersion() ? NewFeatureViewController() : WelcomeViewController()
+        }
+        
+        
+        
+    }
+    
+    /// 判断是不是新版本
+    func judgeNewVersion() -> Bool {
+        
+        let newVersion = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]?.doubleValue
+        
+        let oldVersionKey = "oldVersionKey"
+        let oldVersion = NSUserDefaults.standardUserDefaults().doubleForKey(oldVersionKey)
+        
+        NSUserDefaults.standardUserDefaults().setDouble(newVersion!, forKey: oldVersionKey)
+        
+        return newVersion != oldVersion
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {

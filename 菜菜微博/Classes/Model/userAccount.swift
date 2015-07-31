@@ -16,6 +16,11 @@ class userAccount: NSObject,NSCoding {
     var name: String?
     var avatar_large: String?
     
+    class var isLogin:Bool {
+        
+        return loadAccount() != nil
+    }
+    
     init(dict:[String:AnyObject]) {
         super.init()
         
@@ -39,7 +44,7 @@ class userAccount: NSObject,NSCoding {
     
     /// 使用令牌从服务器获取用户的信息,并且给自己赋值并归档
     func loadUserInfo(completion:(error:NSError?) -> ()) {
-        
+//        print(userAccount.archiverPath)
         NetworkTools.sharedNetworkToos.getUserInfo { (json, error) -> () in
             
             if error != nil {
@@ -52,6 +57,8 @@ class userAccount: NSObject,NSCoding {
             self.avatar_large = json!["avatar_large"] as? String
             
             self.saveAccount()
+            
+            
             
             completion(error: nil)
             

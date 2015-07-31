@@ -20,6 +20,7 @@
 		8BBBF2041B6621A100F469C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBBF2031B6621A100F469C2 /* AppDelegate.swift */; };
 		8BBBF20B1B6621A100F469C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BBBF20A1B6621A100F469C2 /* Assets.xcassets */; };
 		8BCD0E401B6B4F2F0014C863 /* NewFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD0E3F1B6B4F2F0014C863 /* NewFeatureViewController.swift */; };
+		8BCD0E421B6B6D6D0014C863 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD0E411B6B6D6D0014C863 /* WelcomeViewController.swift */; };
 		8BD8E2CA1B6A0B9400CE1D50 /* userAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD8E2C91B6A0B9400CE1D50 /* userAccount.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		8BBBF20A1B6621A100F469C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BBBF20F1B6621A100F469C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BCD0E3F1B6B4F2F0014C863 /* NewFeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeatureViewController.swift; sourceTree = "<group>"; };
+		8BCD0E411B6B6D6D0014C863 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8BD8E2C91B6A0B9400CE1D50 /* userAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userAccount.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				8BCD0E3F1B6B4F2F0014C863 /* NewFeatureViewController.swift */,
+				8BCD0E411B6B6D6D0014C863 /* WelcomeViewController.swift */,
 			);
 			path = NewFeature;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				8BD8E2CA1B6A0B9400CE1D50 /* userAccount.swift in Sources */,
 				8BA5BE6D1B66270700D8F2B9 /* MainViewController.swift in Sources */,
 				8B4FEBAF1B6947F300E38FD2 /* OAuthViewController.swift in Sources */,
+				8BCD0E421B6B6D6D0014C863 /* WelcomeViewController.swift in Sources */,
 				8BA5BE651B66253B00D8F2B9 /* DiscoverTableViewController.swift in Sources */,
 				8B7441401B69159100092F61 /* NetworkTools.swift in Sources */,
 				8BA5BE711B66565700D8F2B9 /* VisitorLoginView.swift in Sources */,

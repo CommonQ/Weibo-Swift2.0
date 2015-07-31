@@ -77,7 +77,9 @@ class OAuthViewController: UIViewController,UIWebViewDelegate {
                         print(error)
                     }
                     
-                    print(userAccount.loadAccount()?.name)
+                    NSNotificationCenter.defaultCenter().postNotificationName(rootViewControllerDisplay, object: false)
+                    
+                    self.close()
                     
                 })
       

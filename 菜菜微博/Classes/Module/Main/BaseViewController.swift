@@ -10,7 +10,7 @@ import UIKit
 
 class BaseViewController: UITableViewController,VisitorLoginViewDelegate {
     
-    var isLogin = false
+    var isLogin:Bool = userAccount.isLogin
     var visitorView:VisitorLoginView?
     
     /// 加载根控制器

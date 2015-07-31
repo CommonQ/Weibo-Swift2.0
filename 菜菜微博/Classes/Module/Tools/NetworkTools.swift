@@ -19,7 +19,7 @@ class NetworkTools: AFHTTPSessionManager {
     
     private let clientID      = "2358840009"
     private let  clientSecret = "68073b7f2a27ac60972d13dc52695d86"
-    let redirectUri           = "http://www.baidu.com"
+    let redirectUri           = "http://www.error.net"
     
     /// 单例的下载工具
     static let sharedNetworkToos:NetworkTools = {
@@ -36,20 +36,7 @@ class NetworkTools: AFHTTPSessionManager {
         
         return tools
     }()
-    
-/*
-    App Key：2358840009
-    App Secret：68073b7f2a27ac60972d13dc52695d86
 
-    https://api.weibo.com/oauth2/authorize
-    
-    https://api.weibo.com/oauth2/access_token
-    
-    client_id	true	string	申请应用时分配的AppKey。
-    client_secret	true	string	申请应用时分配的AppSecret。
-    grant_type	true	string	请求的类型，填写authorization_code
-
-*/
     /// 拼接OAuth的token请求地址
     func getAuthorizeURL() -> NSURL {
         
@@ -116,24 +103,6 @@ class NetworkTools: AFHTTPSessionManager {
             })
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
     
 }
