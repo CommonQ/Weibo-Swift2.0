@@ -151,9 +151,9 @@ class VisitorLoginView: UIView {
         
         desLabel.text = "这是一个添加描述的文本Label"
         desLabel.textColor = UIColor.darkGrayColor()
-        desLabel.sizeToFit()
         desLabel.textAlignment = NSTextAlignment.Center
         desLabel.numberOfLines = 0
+        desLabel.sizeToFit()
         
         return desLabel
     }()

@@ -57,9 +57,7 @@ class userAccount: NSObject,NSCoding {
             self.avatar_large = json!["avatar_large"] as? String
             
             self.saveAccount()
-            
-            
-            
+
             completion(error: nil)
             
         }

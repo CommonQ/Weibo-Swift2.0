@@ -36,15 +36,10 @@ class OAuthViewController: UIViewController,UIWebViewDelegate {
     /// 关闭登录界面
     func close() {
         
-//        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(1*NSEC_PER_SEC))
-//        
-//        dispatch_after(when, dispatch_get_main_queue()) { () -> Void in
-        
             SVProgressHUD.dismiss()
             
             self.dismissViewControllerAnimated(true, completion: nil)
-            
-//        }
+
     }
     
     
@@ -71,10 +66,18 @@ class OAuthViewController: UIViewController,UIWebViewDelegate {
             
             NetworkTools.sharedNetworkToos.getAccessToken(code, completion: { (json, error) -> () in
                 
+                if error != nil || json == nil {
+                    
+                    print(error)
+                    self.netError()
+                }
+                
                 userAccount(dict: json!).loadUserInfo({ (error) -> () in
                     
                     if error != nil {
+                        
                         print(error)
+                        self.netError()
                     }
                     
                     NSNotificationCenter.defaultCenter().postNotificationName(rootViewControllerDisplay, object: false)
@@ -90,7 +93,20 @@ class OAuthViewController: UIViewController,UIWebViewDelegate {
             close()
         }
         
-        return true
+        return false
+    }
+    
+    /// 出错的时候提示
+    private func netError() {
+        
+        SVProgressHUD.showInfoWithStatus("网挂了!")
+        
+        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(2*NSEC_PER_SEC))
+
+        dispatch_after(when, dispatch_get_main_queue()) { () -> Void in
+            self.close()
+        }
+    
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {

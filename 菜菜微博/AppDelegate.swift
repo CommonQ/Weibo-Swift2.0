@@ -55,10 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             
             return judgeNewVersion() ? NewFeatureViewController() : WelcomeViewController()
-        }
-        
-        
-        
+        } 
     }
     
     /// 判断是不是新版本

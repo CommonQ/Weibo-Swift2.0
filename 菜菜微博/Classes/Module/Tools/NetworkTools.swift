@@ -66,7 +66,7 @@ class NetworkTools: AFHTTPSessionManager {
     func getUserInfo(completion:(json:[String:AnyObject]?,error:NSError?) -> ()) {
         
         let userInfoURL = "https://api.weibo.com/2/users/show.json"
-        
+
         let parameters:[String:AnyObject] = ["access_token":userAccount.loadAccount()!.access_token! , "uid":userAccount.loadAccount()!.uid!]
         
         NetworkTools.requesetJSON(.GET, URLString: userInfoURL, parameters:(parameters ) ) { (json, error) -> () in
@@ -74,6 +74,20 @@ class NetworkTools: AFHTTPSessionManager {
             completion(json: json, error: error)
         }
         
+        
+    }
+    
+    /// 获取用户最新的微博信息
+    func getWeiboStatus(completion:(json:[String:AnyObject]?,error:NSError?) -> ()) {
+        
+        let weiboStatusURL = "https://api.weibo.com/2/statuses/friends_timeline.json"
+        
+        let parameters:[String:AnyObject] = ["access_token":userAccount.loadAccount()!.access_token!]
+        
+        NetworkTools.requesetJSON(.GET, URLString: weiboStatusURL, parameters: parameters) { (json, error) -> () in
+            
+            completion(json: json, error: error)
+        }
         
     }
     

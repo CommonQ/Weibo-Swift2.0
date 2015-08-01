@@ -20,8 +20,6 @@ class WelcomeViewController: UIViewController {
         
         if let iconURL = userAccount.loadAccount()?.avatar_large {
             
-            print(iconURL)
-            
             userIcon.sd_setImageWithURL(NSURL(string: iconURL))
         }
     }
