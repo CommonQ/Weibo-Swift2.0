@@ -18,7 +18,7 @@ enum Method:String {
 class NetworkTools: AFHTTPSessionManager {
     
     private let clientID      = "2358840009"
-    private let  clientSecret = "68073b7f2a27ac60972d13dc52695d86"
+    private let  clientSecret = "1ad49eb9de1233ba7a6e8c0c23645978"
     let redirectUri           = "http://www.error.net"
     
     /// 单例的下载工具
@@ -67,10 +67,10 @@ class NetworkTools: AFHTTPSessionManager {
         
         let userInfoURL = "https://api.weibo.com/2/users/show.json"
 
-        let parameters:[String:AnyObject] = ["access_token":userAccount.loadAccount()!.access_token! , "uid":userAccount.loadAccount()!.uid!]
+        let parameters:[String:AnyObject] = ["access_token":userAccount.loadAccount!.access_token! , "uid":userAccount.loadAccount!.uid!]
         
         NetworkTools.requesetJSON(.GET, URLString: userInfoURL, parameters:(parameters ) ) { (json, error) -> () in
-            
+   
             completion(json: json, error: error)
         }
         
@@ -82,7 +82,7 @@ class NetworkTools: AFHTTPSessionManager {
         
         let weiboStatusURL = "https://api.weibo.com/2/statuses/friends_timeline.json"
         
-        let parameters:[String:AnyObject] = ["access_token":userAccount.loadAccount()!.access_token!]
+        let parameters:[String:AnyObject] = ["access_token":userAccount.loadAccount!.access_token!]
         
         NetworkTools.requesetJSON(.GET, URLString: weiboStatusURL, parameters: parameters) { (json, error) -> () in
             

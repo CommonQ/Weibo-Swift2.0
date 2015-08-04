@@ -8,6 +8,17 @@
 
 import UIKit
 
+enum WeiboStatusCellID:String {
+    case StatusRetweetedCell = "StatusRetweetedCell"
+    case StatusNormalCell = "StatusNormalCell"
+    
+    static func cellID(weiboStatus:WeiboStatus) -> String {
+        
+        return weiboStatus.retweeted_status == nil ? WeiboStatusCellID.StatusNormalCell.rawValue : WeiboStatusCellID.StatusRetweetedCell.rawValue
+        
+    }
+}
+
 class WeiboStatusCell: UITableViewCell {
     
     var weiboStatus:WeiboStatus? {
@@ -18,8 +29,20 @@ class WeiboStatusCell: UITableViewCell {
             statusTopView.weiboStatus = weiboStatus
             
             mainTextLabel.text = weiboStatus?.text
+            
+            statusPictureView.weiboStatus = weiboStatus
+            
+            statusPictureViewWidthCons?.constant = statusPictureView.bounds.width
+            statusPictureViewHeightCons?.constant = statusPictureView.bounds.height
+            statusPictureViewTopCons?.constant = statusPictureView.bounds.height == 0 ? 0 : 8
         }
     }
+    
+    var statusPictureViewWidthCons:NSLayoutConstraint?
+    
+    var statusPictureViewHeightCons:NSLayoutConstraint?
+    
+    var statusPictureViewTopCons:NSLayoutConstraint?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,17 +56,26 @@ class WeiboStatusCell: UITableViewCell {
     }
 
     /// cell准备UI里面的子控件
-    private func prepareUI() {
+    func prepareUI() {
         
         contentView.addSubview(statusTopView)
         contentView.addSubview(mainTextLabel)
+        contentView.addSubview(statusPictureView)
         contentView.addSubview(statusBottomView)
         contentView.addSubview(spaceView)
 
-
         layout()
         
-        
+    }
+    
+    /// 计算行高
+    func rowHeight(weiboStatus: WeiboStatus) -> CGFloat {
+
+        self.weiboStatus = weiboStatus
+
+        layoutIfNeeded()
+
+        return CGRectGetMaxY(spaceView.frame)
     }
     
     /// 添加自动布局约束
@@ -57,10 +89,9 @@ class WeiboStatusCell: UITableViewCell {
         mainTextLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addConstraint(NSLayoutConstraint(item: mainTextLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: statusTopView, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 8))
         contentView.addConstraint(NSLayoutConstraint(item: mainTextLabel, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: 8))
-        contentView.addConstraint(NSLayoutConstraint(item: mainTextLabel, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: -8))
         
         statusBottomView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addConstraint(NSLayoutConstraint(item: statusBottomView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: mainTextLabel, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0))
+        contentView.addConstraint(NSLayoutConstraint(item: statusBottomView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: statusPictureView, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 8))
         contentView.addConstraint(NSLayoutConstraint(item: statusBottomView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: statusBottomView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 44))
         
@@ -68,23 +99,27 @@ class WeiboStatusCell: UITableViewCell {
         contentView.addConstraint(NSLayoutConstraint(item: spaceView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: statusBottomView, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: spaceView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0))
         contentView.addConstraint(NSLayoutConstraint(item: spaceView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 8))
-        contentView.addConstraint(NSLayoutConstraint(item: spaceView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0))
+
         
     }
     
     // MARK: - 懒加载顶部视图,底部视图以及正文
-    private lazy var spaceView:UIView = UIView()
+    lazy var spaceView:UIView = UIView()
     
     private lazy var statusTopView:StatusTopView = StatusTopView()
     
-    private lazy var mainTextLabel:UILabel = {
+    lazy var mainTextLabel:UILabel = {
         let mainTextLabel = UILabel(fontSize: 15, fontColor: UIColor.darkGrayColor())
         mainTextLabel.numberOfLines = 0
+        
+        mainTextLabel.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - 16
         
         return mainTextLabel
     }()
     
-    private lazy var statusBottomView:StatusBottomView = StatusBottomView()
+    lazy var statusPictureView:StatusPictureView = StatusPictureView()
+    
+    lazy var statusBottomView:StatusBottomView = StatusBottomView()
     
 
 }

@@ -10,25 +10,37 @@ import UIKit
 
 class HomeTableViewController: BaseViewController {
     
-    var status:[WeiboStatus]?
+    var status:[WeiboStatus]? {
+        didSet {
+            
+            tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        visitorView?.setupInfo(true, imageName: "visitordiscover_feed_image_smallicon", desString: "关注一些人，回这里看看有什么惊喜")
+        if !userAccount.isLogin {
         
-        tableView.registerClass(WeiboStatusCell.self, forCellReuseIdentifier: "status")
+            visitorView?.setupInfo(true, imageName: "visitordiscover_feed_image_smallicon", desString: "关注一些人，回这里看看有什么惊喜")
+            
+            return
+        }
+        
+        tableView.registerClass(StatusNormalCell.self, forCellReuseIdentifier: WeiboStatusCellID.StatusNormalCell.rawValue)
+        tableView.registerClass(StatusRetweetedCell.self, forCellReuseIdentifier: WeiboStatusCellID.StatusRetweetedCell.rawValue)
         
         WeiboStatus.getWeiboStatus { [weak self] (weiboStatus, error) -> () in
             
             self?.status = weiboStatus
             
-            self?.tableView.reloadData()
         }
         
         
-        tableView.estimatedRowHeight = 200
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 300
+//        tableView.rowHeight = UITableViewAutomaticDimension
+        
+//        tableView.rowHeight = 500
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
 
@@ -46,14 +58,30 @@ class HomeTableViewController: BaseViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("status", forIndexPath: indexPath) as! WeiboStatusCell
+        let weiboStatus = status![indexPath.row]
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(WeiboStatusCellID.cellID(weiboStatus), forIndexPath: indexPath) as! WeiboStatusCell
 
-        cell.weiboStatus = status![indexPath.row]
+        cell.weiboStatus = weiboStatus
   
         return cell
     }
 
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        let weiboStatus = status![indexPath.row]
+        
+        if let rowHeight = weiboStatus.rowHeight {
+            return rowHeight
+        }
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(WeiboStatusCellID.cellID(weiboStatus)) as! WeiboStatusCell
+        
+        weiboStatus.rowHeight = cell.rowHeight(weiboStatus)
 
+        return weiboStatus.rowHeight!
+     
+    }
 
 
 }

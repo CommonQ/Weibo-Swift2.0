@@ -18,7 +18,7 @@ class WelcomeViewController: UIViewController {
         
         prepareUI()
         
-        if let iconURL = userAccount.loadAccount()?.avatar_large {
+        if let iconURL = userAccount.loadAccount!.avatar_large {
             
             userIcon.sd_setImageWithURL(NSURL(string: iconURL))
         }

@@ -27,6 +27,8 @@ class StatusBottomView: UIView {
         addSubview(retweetButton)
         addSubview(commentButton)
         addSubview(likeButton)
+        
+        self.backgroundColor = UIColor(white: 0.98, alpha: 1.0)
     
         layout()
     }
@@ -59,9 +61,9 @@ class StatusBottomView: UIView {
     }
     
     // MARK: - 懒加载控件
-    private lazy var retweetButton:UIButton = UIButton(imageName: "timeline_icon_retweet", title: "转发")
+    private lazy var retweetButton:UIButton = UIButton(imageName: "timeline_icon_retweet", title: " 转发")
     
-    private lazy var commentButton:UIButton = UIButton(imageName: "timeline_icon_comment", title: "评论")
+    private lazy var commentButton:UIButton = UIButton(imageName: "timeline_icon_comment", title: " 评论")
     
-    private lazy var likeButton:UIButton = UIButton(imageName: "timeline_icon_unlike", title: "赞")
+    private lazy var likeButton:UIButton = UIButton(imageName: "timeline_icon_unlike", title: " 赞")
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class WeiboStatus: NSObject {
     
@@ -19,9 +20,38 @@ class WeiboStatus: NSObject {
      /// 微博来源
     var source:String?
      /// 配图数组
-    var pic_urls:[[String:AnyObject]]?
+    var pic_urls:[[String:AnyObject]]? {
+        didSet {
+            
+            if pic_urls!.count == 0 {
+                return
+            }
+            
+            normal_picURL = [NSURL]()
+            
+            for dic in pic_urls! {
+                
+                if let stringURL = dic["thumbnail_pic"] as? String {
+                    normal_picURL?.append(NSURL(string: stringURL)!)
+                    
+                }
+            }
+        }
+    }
+    
+    /// 配图的URL地址
+    var pictureURL:[NSURL]? {
+        return retweeted_status == nil ? normal_picURL : retweeted_status?.normal_picURL
+
+    }
+    /// 转发微博的配图
+    var normal_picURL:[NSURL]?
+    /// 转发的weibo模型
+    var retweeted_status: WeiboStatus?
     /// 用户信息模型
     var user:User?
+    /// 保存行高
+    var rowHeight:CGFloat?
     
     
     
@@ -42,6 +72,15 @@ class WeiboStatus: NSObject {
                 user = User(dict: userDic)
             }
             return
+        }
+        
+        if key == "retweeted_status" {
+            
+            if let retweetedDic = value as? [String:AnyObject] {
+                
+                retweeted_status = WeiboStatus(dict: retweetedDic)
+            }
+            return    
         }
         
         super.setValue(value, forKey: key)
@@ -71,6 +110,35 @@ class WeiboStatus: NSObject {
                 
             }
         }
+    }
+    
+    private func cacheImage(list:[WeiboStatus],completion:(weiboStatus:[WeiboStatus]?,error:NSError?) -> ()) {
+        
+        let group = dispatch_group_create()
+        
+        for status in list {
+            
+            guard let urls = status.pictureURL else {
+                continue
+            }
+            
+            for imageURL in urls {
+                
+                dispatch_group_enter(group)
+                
+                SDWebImageManager.sharedManager().downloadImageWithURL(imageURL, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (_, _ , _ , _ , _ ) -> Void in
+                    
+//                    UIImagePNGRepresentation(<#T##image: UIImage##UIImage#>)
+                })
+                dispatch_group_leave(group)
+   
+            }
+        }
+        
+        dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
+            
+            completion(weiboStatus: list, error: nil)
+        }  
     }
     
     

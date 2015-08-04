@@ -17,6 +17,7 @@ class BaseViewController: UITableViewController,VisitorLoginViewDelegate {
     override func loadView() {
         
         isLogin ? super.loadView() : setupVisitorView()
+        
     }
     
     /// 加载访客视图,并且设置nav控制器的左右按钮

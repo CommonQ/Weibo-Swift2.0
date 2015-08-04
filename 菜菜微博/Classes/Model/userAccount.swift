@@ -18,7 +18,7 @@ class userAccount: NSObject,NSCoding {
     
     class var isLogin:Bool {
         
-        return loadAccount() != nil
+        return loadAccount != nil
     }
     
     init(dict:[String:AnyObject]) {
@@ -44,7 +44,7 @@ class userAccount: NSObject,NSCoding {
     
     /// 使用令牌从服务器获取用户的信息,并且给自己赋值并归档
     func loadUserInfo(completion:(error:NSError?) -> ()) {
-//        print(userAccount.archiverPath)
+        
         NetworkTools.sharedNetworkToos.getUserInfo { (json, error) -> () in
             
             if error != nil {
@@ -65,12 +65,14 @@ class userAccount: NSObject,NSCoding {
     
     //提供一个外部访问的接口,如果内存中没有用户信息,则从沙盒中读取,沙盒中也没的话,返回是nil
     private static var userAccountInfo:userAccount?
-    class func loadAccount() -> userAccount? {
+    class var loadAccount:userAccount? {
+//        print(userAccount.archiverPath)
         
         if userAccountInfo == nil {
             
             userAccountInfo = NSKeyedUnarchiver.unarchiveObjectWithFile(archiverPath) as? userAccount
         }
+        
         return userAccountInfo
     }
     
