@@ -87,10 +87,9 @@ class WeiboStatus: NSObject {
         
     }
     
-    class func getWeiboStatus(completion:(weiboStatus:[WeiboStatus]?,error:NSError?) -> ()) {
+    class func getWeiboStatus(since_id:Int, max_id:Int,completion:(weiboStatus:[WeiboStatus]?,error:NSError?) -> ()) {
         
-        NetworkTools.sharedNetworkToos.getWeiboStatus { (json, error) -> () in
-            
+        NetworkTools.sharedNetworkToos.getWeiboStatus(since_id, max_id: max_id) { (json, error) -> () in
             if error != nil {
                 
                 completion(weiboStatus: nil, error: error)
@@ -110,7 +109,10 @@ class WeiboStatus: NSObject {
                 
             }
         }
-    }
+
+        }
+        
+
     
     private func cacheImage(list:[WeiboStatus],completion:(weiboStatus:[WeiboStatus]?,error:NSError?) -> ()) {
         
@@ -128,7 +130,6 @@ class WeiboStatus: NSObject {
                 
                 SDWebImageManager.sharedManager().downloadImageWithURL(imageURL, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (_, _ , _ , _ , _ ) -> Void in
                     
-//                    UIImagePNGRepresentation(<#T##image: UIImage##UIImage#>)
                 })
                 dispatch_group_leave(group)
    

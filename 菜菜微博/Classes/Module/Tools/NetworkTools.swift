@@ -78,11 +78,18 @@ class NetworkTools: AFHTTPSessionManager {
     }
     
     /// 获取用户最新的微博信息
-    func getWeiboStatus(completion:(json:[String:AnyObject]?,error:NSError?) -> ()) {
+    func getWeiboStatus(since_id:Int, max_id:Int,completion:(json:[String:AnyObject]?,error:NSError?) -> ()) {
         
-        let weiboStatusURL = "https://api.weibo.com/2/statuses/friends_timeline.json"
+        let weiboStatusURL = "https://api.weibo.com/2/statuses/home_timeline.json"
         
-        let parameters:[String:AnyObject] = ["access_token":userAccount.loadAccount!.access_token!]
+        var parameters:[String:AnyObject] = ["access_token":userAccount.loadAccount!.access_token!]
+        
+        if since_id > 0 {
+            parameters["since_id"] = since_id
+        }
+        if max_id > 0 {
+            parameters["max_id"] = max_id - 1
+        }
         
         NetworkTools.requesetJSON(.GET, URLString: weiboStatusURL, parameters: parameters) { (json, error) -> () in
             
