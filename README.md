@@ -3,7 +3,7 @@
 
 开发环境:xcode7 beta4 / ios9.0 
 
-使用框架:AFNetworking
+使用框架:AFNetworking / SDWebImage
 
 新浪微博接口地址
 
@@ -16,6 +16,7 @@
 * 架构搭建
 
   * 搭建主界面
+   ** 性特性界面,访客界面,欢迎界面
 
   * QAuth
 
