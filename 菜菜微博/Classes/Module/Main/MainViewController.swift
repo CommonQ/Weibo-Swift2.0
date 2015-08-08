@@ -32,8 +32,12 @@ class MainViewController: UITabBarController {
     /// 撰写按钮的点击事件
     func clickcomposedBtn() {
         
-        print("111")
+        let vc = userAccount.isLogin ? ComposeViewController() : OAuthViewController()
         
+        let nav = UINavigationController(rootViewController: vc)
+        
+        presentViewController(nav, animated: true, completion: nil)
+    
     }
     
     /// 添加撰写按钮

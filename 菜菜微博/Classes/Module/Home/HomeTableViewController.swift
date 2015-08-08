@@ -73,13 +73,23 @@ class HomeTableViewController: BaseViewController {
 
         WeiboStatus.getWeiboStatus(since_id, max_id: max_id) { (weiboStatus, error) -> () in
             
+            self.refreshControl?.endRefreshing()
+            
             if error != nil {
                 print(error)
                 return
             }
             
-            self.refreshControl?.endRefreshing()
+            let count = weiboStatus?.count
             
+            if since_id > 0 {
+                self.showNewStatusTip(count!)
+            }
+            
+            if count == 0 {
+                return
+            }
+
             if since_id > 0 {
                 
                 self.status = weiboStatus! + self.status!
@@ -96,6 +106,27 @@ class HomeTableViewController: BaseViewController {
             }
         }
 
+    }
+    
+    /// 显示刷新到几条新微博数据的tip
+    ///
+    /// :param: count 最新的微博条数
+    private func showNewStatusTip(count:Int) {
+
+        tipLabel.text = count == 0 ? "没有最新的微博哦" : "刷新了\(count)条新微博"
+        
+        let rect = tipLabel.frame
+        
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            
+            UIView.setAnimationRepeatAutoreverses(true)
+            
+            self.tipLabel.frame.origin.y = 44
+
+        }) { (_) -> Void in
+                
+            self.tipLabel.frame = rect
+        }
     }
 
     // MARK: - TableView 数据源方法
@@ -139,6 +170,20 @@ class HomeTableViewController: BaseViewController {
         return weiboStatus.rowHeight!
      
     }
+    
+    // MARK: - 懒加载
+    private lazy var tipLabel:UILabel = {
+        
+        let h:CGFloat = 44
+        
+        let tipLabel = UILabel(fontSize: 14 , fontColor: UIColor.whiteColor())
 
-
+        tipLabel.frame = CGRect(x: 0, y: -2 * h, width: UIScreen.mainScreen().bounds.width, height: h)
+        tipLabel.backgroundColor = UIColor.orangeColor()
+        tipLabel.textAlignment = NSTextAlignment.Center
+        
+        self.navigationController?.navigationBar.insertSubview(tipLabel, atIndex: 0)
+        
+        return tipLabel
+    }()
 }

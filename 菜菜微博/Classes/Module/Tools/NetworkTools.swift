@@ -98,6 +98,24 @@ class NetworkTools: AFHTTPSessionManager {
         
     }
     
+    /// 发送微博
+    func sendStatus(status:String,image:UIImage?,completion:(json:[String:AnyObject]?,error:NSError?) -> ()) {
+        
+        let parameters:[String:AnyObject] = ["access_token":userAccount.loadAccount!.access_token! , "status":status]
+        
+        if image == nil {
+            
+            NetworkTools.requesetJSON(.POST, URLString: "2/statuses/update.json", parameters: parameters, completion: { (json, error) -> () in
+                
+                completion(json: json, error: error)
+            })
+        } else {
+            
+            return
+        }
+        
+    }
+    
     /// 封装AFN框架,降低AFN框架和项目的耦合性
     class func requesetJSON(method:Method, URLString:String!, parameters:[String:AnyObject]?, completion:(json:[String:AnyObject]?,error:NSError?) -> () ) {
         
