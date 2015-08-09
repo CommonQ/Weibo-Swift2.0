@@ -28,11 +28,15 @@ class WeiboStatus: NSObject {
             }
             
             normal_picURL = [NSURL]()
+            large_picURL = [NSURL]()
             
             for dic in pic_urls! {
                 
                 if let stringURL = dic["thumbnail_pic"] as? String {
                     normal_picURL?.append(NSURL(string: stringURL)!)
+                    
+                    let largeURl = stringURL.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
+                    large_picURL?.append(NSURL(string: largeURl)!)
                     
                 }
             }
@@ -44,8 +48,14 @@ class WeiboStatus: NSObject {
         return retweeted_status == nil ? normal_picURL : retweeted_status?.normal_picURL
 
     }
-    /// 转发微博的配图
+    /// 配图的大图的URL地址
+    var largePictureURL:[NSURL]? {
+        return retweeted_status == nil ? large_picURL : retweeted_status?.large_picURL
+    }
+    /// 微博的配图
     var normal_picURL:[NSURL]?
+    /// 微博大图
+    var large_picURL:[NSURL]?
     /// 转发的weibo模型
     var retweeted_status: WeiboStatus?
     /// 用户信息模型

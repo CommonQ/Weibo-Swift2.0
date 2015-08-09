@@ -33,7 +33,7 @@ class userAccount: NSObject,NSCoding {
     
 
     // 归档路径
-    static private let archiverPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last!.stringByAppendingPathComponent("userAccount.data")
+    static private let archiverPath = (NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last! as NSString).stringByAppendingPathComponent("userAccount.data")
     
     /// 保存用户信息
     func saveAccount() {

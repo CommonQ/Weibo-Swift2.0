@@ -23,7 +23,7 @@ class EmoticonPackage:NSObject {
     
     class func package() -> [EmoticonPackage] {
         
-        let packagePath = bundlePath.stringByAppendingPathComponent("emoticons.plist")
+        let packagePath = (bundlePath as NSString).stringByAppendingPathComponent("emoticons.plist")
         
         let dict = NSDictionary(contentsOfFile: packagePath)!
         
@@ -44,7 +44,7 @@ class EmoticonPackage:NSObject {
     /// 加载表情数组
     private func loadEmoticons() -> Self {
     
-        let emoticonsPath = EmoticonPackage.bundlePath.stringByAppendingPathComponent(id!).stringByAppendingPathComponent("info.plist")
+        let emoticonsPath = (EmoticonPackage.bundlePath.stringByAppendingPathComponent(id!) as NSString).stringByAppendingPathComponent("info.plist")
     
         let dict = NSDictionary(contentsOfFile: emoticonsPath)!
         
@@ -87,7 +87,7 @@ class EmoticonPackage:NSObject {
     }
     
     
-    static let bundlePath = NSBundle.mainBundle().bundlePath.stringByAppendingPathComponent("Emoticons.bundle")
+    static let bundlePath:NSString = (NSBundle.mainBundle().bundlePath as NSString).stringByAppendingPathComponent("Emoticons.bundle")
 }
 
 
@@ -104,7 +104,7 @@ class Emoticons: NSObject {
         if png == nil {
             return ""
         }
-       return EmoticonPackage.bundlePath.stringByAppendingPathComponent(id!).stringByAppendingPathComponent(png!)
+       return (EmoticonPackage.bundlePath.stringByAppendingPathComponent(id!) as NSString).stringByAppendingPathComponent(png!)
     
     }
     /// Emoji表情的code

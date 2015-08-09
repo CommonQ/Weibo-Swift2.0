@@ -12,6 +12,10 @@
 		8B177A951B6D0CED00147EF5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B177A941B6D0CED00147EF5 /* User.swift */; };
 		8B177A9B1B6D23E400147EF5 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B177A9A1B6D23E400147EF5 /* UILabel+Extension.swift */; };
 		8B177A9D1B6D25BE00147EF5 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B177A9C1B6D25BE00147EF5 /* UIImageView+Extension.swift */; };
+		8B2070EA1B77738800EE08CB /* PictureViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2070E91B77738800EE08CB /* PictureViewCell.swift */; };
+		8B4ED9751B75DE8A00F3A654 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4ED9741B75DE8A00F3A654 /* UIImage+Extension.swift */; };
+		8B4ED9781B75DEDC00F3A654 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4ED9771B75DEDC00F3A654 /* PhotoSelectorViewController.swift */; };
+		8B4ED97E1B77228400F3A654 /* PhotoBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4ED97D1B77228400F3A654 /* PhotoBrowserController.swift */; };
 		8B4FEBAF1B6947F300E38FD2 /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4FEBAE1B6947F300E38FD2 /* OAuthViewController.swift */; };
 		8B7441401B69159100092F61 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B74413F1B69159100092F61 /* NetworkTools.swift */; };
 		8B8329D31B71290400B580E2 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8329D21B71290400B580E2 /* ComposeViewController.swift */; };
@@ -52,6 +56,10 @@
 		8B177A941B6D0CED00147EF5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8B177A9A1B6D23E400147EF5 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		8B177A9C1B6D25BE00147EF5 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		8B2070E91B77738800EE08CB /* PictureViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewCell.swift; sourceTree = "<group>"; };
+		8B4ED9741B75DE8A00F3A654 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		8B4ED9771B75DEDC00F3A654 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
+		8B4ED97D1B77228400F3A654 /* PhotoBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserController.swift; sourceTree = "<group>"; };
 		8B4FEBAE1B6947F300E38FD2 /* OAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
 		8B74413F1B69159100092F61 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		8B8329D21B71290400B580E2 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +115,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8B4ED9761B75DED300F3A654 /* PhotoSelector */ = {
+			isa = PBXGroup;
+			children = (
+				8B4ED9771B75DEDC00F3A654 /* PhotoSelectorViewController.swift */,
+			);
+			path = PhotoSelector;
+			sourceTree = "<group>";
+		};
+		8B4ED97C1B77228400F3A654 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				8B4ED97D1B77228400F3A654 /* PhotoBrowserController.swift */,
+				8B2070E91B77738800EE08CB /* PictureViewCell.swift */,
+			);
+			path = PhotoBrowser;
+			sourceTree = "<group>";
+		};
 		8B4FEBAD1B6947C700E38FD2 /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +146,7 @@
 				8BBA6E411B74E5C700E63883 /* Emoticons */,
 				8B74413F1B69159100092F61 /* NetworkTools.swift */,
 				8B177A9A1B6D23E400147EF5 /* UILabel+Extension.swift */,
+				8B4ED9741B75DE8A00F3A654 /* UIImage+Extension.swift */,
 				8BF991EF1B6D3B7E00DA04A5 /* UIButton+Extension.swift */,
 				8B177A9C1B6D25BE00147EF5 /* UIImageView+Extension.swift */,
 				8B8329D41B71431E00B580E2 /* UIBarButtonItem+Extension.swift */,
@@ -132,6 +158,7 @@
 		8B8329D11B7128D700B580E2 /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				8B4ED9761B75DED300F3A654 /* PhotoSelector */,
 				8B8329D21B71290400B580E2 /* ComposeViewController.swift */,
 			);
 			path = Compose;
@@ -226,6 +253,7 @@
 		8BBBF2191B66221300F469C2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8B4ED97C1B77228400F3A654 /* PhotoBrowser */,
 				8BDFA5181B70DE0A00DA48F3 /* Refresh */,
 				8BDFA50B1B70B54100DA48F3 /* StatusCell */,
 				8BA5BE661B66254800D8F2B9 /* HomeTableViewController.swift */,
@@ -424,6 +452,7 @@
 				8BA5BE671B66254800D8F2B9 /* HomeTableViewController.swift in Sources */,
 				8BA5BE691B66255200D8F2B9 /* MessageTableViewController.swift in Sources */,
 				8BDFA5161B70B54100DA48F3 /* StatusTopView.swift in Sources */,
+				8B4ED97E1B77228400F3A654 /* PhotoBrowserController.swift in Sources */,
 				8B8329D31B71290400B580E2 /* ComposeViewController.swift in Sources */,
 				8BDFA5151B70B54100DA48F3 /* StatusRetweetedCell.swift in Sources */,
 				8B8329D51B71431E00B580E2 /* UIBarButtonItem+Extension.swift in Sources */,
@@ -443,11 +472,14 @@
 				8BBA6E491B74E5C700E63883 /* Emoticons.swift in Sources */,
 				8B7441401B69159100092F61 /* NetworkTools.swift in Sources */,
 				8BDFA5171B70B54100DA48F3 /* WeiboStatusCell.swift in Sources */,
+				8B4ED9781B75DEDC00F3A654 /* PhotoSelectorViewController.swift in Sources */,
 				8BA5BE711B66565700D8F2B9 /* VisitorLoginView.swift in Sources */,
 				8BA5BE6F1B663C3800D8F2B9 /* BaseViewController.swift in Sources */,
 				8BCD0E401B6B4F2F0014C863 /* NewFeatureViewController.swift in Sources */,
+				8B4ED9751B75DE8A00F3A654 /* UIImage+Extension.swift in Sources */,
 				8B177A9D1B6D25BE00147EF5 /* UIImageView+Extension.swift in Sources */,
 				8BDFA5131B70B54100DA48F3 /* StatusNormalCell.swift in Sources */,
+				8B2070EA1B77738800EE08CB /* PictureViewCell.swift in Sources */,
 				8BBBF2041B6621A100F469C2 /* AppDelegate.swift in Sources */,
 				8BF991F01B6D3B7E00DA04A5 /* UIButton+Extension.swift in Sources */,
 			);
@@ -544,6 +576,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "菜菜微博/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cabbage.----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -557,6 +590,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "菜菜微博/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "cabbage.----";
 				PRODUCT_NAME = "$(TARGET_NAME)";

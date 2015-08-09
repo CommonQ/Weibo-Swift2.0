@@ -9,6 +9,10 @@
 import UIKit
 import SDWebImage
 
+let StatusCellSelectedPictureNotification = "StatusCellSelectedPictureNotification"
+let StatusCellSelectedPictureURLs = "StatusCellSelectedPictureURLs"
+let StatusCellSelectedPictureIndexPath = "StatusCellSelectedPictureIndexPath"
+
 private let statusPictureViewCellReuseID = "statusPictureViewCellReuseID"
 
 class StatusPictureView:UICollectionView {
@@ -91,6 +95,7 @@ class StatusPictureView:UICollectionView {
         registerClass(StatusPictureViewCell.self, forCellWithReuseIdentifier: statusPictureViewCellReuseID)
         
         self.dataSource = self
+        self.delegate = self
         
     }
 
@@ -103,7 +108,12 @@ class StatusPictureView:UICollectionView {
 }
 
 /// pictureView数据源方法
-extension StatusPictureView: UICollectionViewDataSource {
+extension StatusPictureView: UICollectionViewDataSource ,UICollectionViewDelegate{
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+
+        NSNotificationCenter.defaultCenter().postNotificationName(StatusCellSelectedPictureNotification, object: self, userInfo: [StatusCellSelectedPictureURLs:weiboStatus!.largePictureURL!, StatusCellSelectedPictureIndexPath:indexPath])
+    }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         

@@ -35,6 +35,13 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    /// 输入图片
+    func inputPhoto() {
+        
+        perparePhotoVc()
+        
+    }
+    
     /// 输入表情
     func inputEmoticon() {
         
@@ -170,7 +177,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[toolBar(44)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["toolBar":toolBar]))
         toolbarBottomCons = view.constraints.last
         
-        let itemSettings = [["imageName": "compose_toolbar_picture"],
+        let itemSettings = [["imageName": "compose_toolbar_picture", "action": "inputPhoto"],
             ["imageName": "compose_mentionbutton_background"],
             ["imageName": "compose_trendbutton_background"],
             ["imageName": "compose_emoticonbutton_background", "action": "inputEmoticon"],
@@ -217,6 +224,28 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    private func perparePhotoVc() {
+        
+//        view.addSubview(photoVc.view)
+//        
+//        addChildViewController(photoVc)
+////        presentViewController(photoVc, animated: true, completion: nil)
+//        
+//        var s = UIScreen.mainScreen().bounds.size
+//        
+////        s.height = 0.6 * s.height
+//        
+////        photoVc.view.bounds.size = s
+//        
+//        photoVc.view.backgroundColor = UIColor.redColor()
+//        
+//        photoVc.view.translatesAutoresizingMaskIntoConstraints = false
+//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[photoVc.view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["photoVc.view":photoVc.view]))
+//        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[photoVc.view(400)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["photoVc.view":photoVc.view]))
+        
+        
+    }
+    
     
     // MARK: - 懒加载
     private lazy var textView:UITextView = {
@@ -243,5 +272,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     }
     
     private lazy var lengthTipLabel = UILabel(fontSize: 10, fontColor: UIColor.grayColor())
+    
+    private lazy var photoVc:PhotoSelectorViewController = PhotoSelectorViewController()
 
 }

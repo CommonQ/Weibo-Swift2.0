@@ -27,10 +27,33 @@ class HomeTableViewController: BaseViewController {
             return
         }
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "photoBrowser:", name: StatusCellSelectedPictureNotification, object: nil)
+        
         prepareTableView()
         
         loadData()
 
+    }
+    
+    deinit {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func photoBrowser(noti:NSNotification) {
+        
+        guard let urls = noti.userInfo![StatusCellSelectedPictureURLs] as? [NSURL] else {
+            return
+        }
+        
+        guard let indexPath = noti.userInfo![StatusCellSelectedPictureIndexPath] as? NSIndexPath else {
+            return
+        }
+        
+        let photoBrowser = PhotoBrowserController(imageURLs: urls, index: indexPath.item)
+        
+        presentViewController(photoBrowser, animated: true, completion: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
