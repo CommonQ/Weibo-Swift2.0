@@ -12,13 +12,26 @@ import SDWebImage
 class WeiboStatus: NSObject {
     
      /// 微博创建时间
-    var created_at:String?
+    var created_at:String? {
+        didSet {
+            
+            print(created_at)
+            
+        }
+    }
      /// 微博ID
     var id:Int = 0
      /// 微博信息内容
     var text:String?
      /// 微博来源
-    var source:String?
+    var source:String? {
+        didSet {
+            
+            source = source?.herfLink()
+
+            //"<a href=\"http://weibo.com/\" rel=\"nofollow\">微博 weibo.com</a>"
+        }
+    }
      /// 配图数组
     var pic_urls:[[String:AnyObject]]? {
         didSet {

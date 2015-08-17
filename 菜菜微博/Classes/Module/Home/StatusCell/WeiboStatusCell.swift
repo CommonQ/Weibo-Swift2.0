@@ -32,7 +32,7 @@ class WeiboStatusCell: UITableViewCell {
             
             statusTopView.weiboStatus = weiboStatus
             
-            mainTextLabel.text = weiboStatus?.text
+            mainTextLabel.attributedText = EmoticonPackage.emoticonString(weiboStatus!.text!, font: mainTextLabel.font)
             
             statusPictureView.weiboStatus = weiboStatus
             
@@ -112,8 +112,8 @@ class WeiboStatusCell: UITableViewCell {
     
     private lazy var statusTopView:StatusTopView = StatusTopView()
     
-    lazy var mainTextLabel:UILabel = {
-        let mainTextLabel = UILabel(fontSize: 15, fontColor: UIColor.darkGrayColor())
+    lazy var mainTextLabel:FFLabel = {
+        let mainTextLabel = FFLabel(fontSize: 15, fontColor: UIColor.darkGrayColor())
         mainTextLabel.numberOfLines = 0
         
         mainTextLabel.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - 16

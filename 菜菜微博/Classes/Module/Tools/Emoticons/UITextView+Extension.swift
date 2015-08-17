@@ -30,19 +30,7 @@ extension UITextView {
         /// 插入png表情
         if emoticon.chs != nil {
             
-            let attachment = EmoticonAttachment()
-            
-            attachment.chs = emoticon.chs
-            
-            attachment.image = UIImage(contentsOfFile: emoticon.imagePath)
-            
-            let lineH = font!.lineHeight
-            
-            attachment.bounds = CGRect(x: 0, y: -3.5, width: lineH, height: lineH)
-            
-            let imageText = NSMutableAttributedString(attributedString: NSAttributedString(attachment: attachment))
-            
-            imageText.addAttribute(NSFontAttributeName, value: font!, range: NSMakeRange(0, 1))
+            let imageText = EmoticonAttachment.imageText(emoticon, font: font!)
             
             let attrString = NSMutableAttributedString(attributedString: attributedText)
             
@@ -54,6 +42,7 @@ extension UITextView {
             
             selectedRange = NSRange(location: range.location + 1, length: 0)
             
+            /// 执行代理方法,隐藏textView的占位文字
             delegate?.textViewDidChange!(self)
         }
   

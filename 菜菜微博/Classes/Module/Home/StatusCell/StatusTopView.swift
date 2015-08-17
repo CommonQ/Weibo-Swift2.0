@@ -24,8 +24,8 @@ class StatusTopView: UIView {
             verifiedView.image = weiboStatus?.user?.verifiedImage
             
             nameLabel.text = weiboStatus?.user?.name
-            timeLabel.text = "刚刚"
-            sourceLabel.text = "测试来源"
+            timeLabel.text = NSDate.sinaDate(weiboStatus?.created_at ?? "")?.dateDescription
+            sourceLabel.text = weiboStatus?.source
             
         }
     }

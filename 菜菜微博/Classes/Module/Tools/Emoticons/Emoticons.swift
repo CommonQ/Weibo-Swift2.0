@@ -41,6 +41,56 @@ class EmoticonPackage:NSObject {
         return arrayM
     }
     
+    /// 把表情模型转换成表情字符串
+    class func emoticonString(string:String,font:UIFont) -> NSMutableAttributedString {
+        
+        let pattern = "\\[.*?\\]"
+        
+        let regular = try! NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.DotMatchesLineSeparators)
+        
+        let results = regular.matchesInString(string, options: NSMatchingOptions(rawValue: 0), range: NSMakeRange(0, string.characters.count))
+        
+        var count = results.count
+        
+        let stringM = NSMutableAttributedString(string: string)
+        
+        while count > 0 {
+            
+            let result = results[--count]
+            let range = result.rangeAtIndex(0)
+            
+            let emString = (string as NSString).substringWithRange(range)
+            
+            if let emoticon = EmoticonPackage.emoticon(string: emString) {
+                
+                let imageText = EmoticonAttachment.imageText(emoticon, font:font )
+                
+                stringM.replaceCharactersInRange(range, withAttributedString: imageText)
+            }
+        }
+        
+        return stringM
+    }
+    
+    /// 根据字符串返回对应的表情模型
+    private class func emoticon(string string:String) -> Emoticons? {
+        
+        var emoticon:Emoticons?
+        
+        for p in EmoticonPackage.package() {
+            
+            emoticon = p.emoticons!.filter { $0.chs == string }.last
+            
+            if emoticon != nil {
+                break
+            }
+        }
+        
+        return emoticon
+        
+        
+    }
+    
     /// 加载表情数组
     private func loadEmoticons() -> Self {
     
@@ -67,6 +117,7 @@ class EmoticonPackage:NSObject {
         return self
     }
     
+    /// 添加空的表情
     private func loadEmptyEmoticons() -> Self {
         
         if emoticons == nil {
