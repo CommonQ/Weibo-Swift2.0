@@ -62,7 +62,9 @@ class OAuthViewController: UIViewController,UIWebViewDelegate {
         
         if let query = request.URL?.query where query.hasPrefix("code="){
             
-            let code = query.substringFromIndex(advance(query.startIndex, "code=".characters.count))
+//            let code = query.substringFromIndex(advance(query.startIndex, "code=".characters.count))
+            
+            let code = query.substringFromIndex(query.startIndex.advancedBy("code".characters.count))
             
             NetworkTools.sharedNetworkToos.getAccessToken(code, completion: { (json, error) -> () in
                 

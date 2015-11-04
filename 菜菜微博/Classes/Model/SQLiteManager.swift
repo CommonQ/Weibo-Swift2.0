@@ -12,18 +12,18 @@ private let dbName = "readme.md"
 
 class SQLiteManager {
     
-    static let sheradManager = SQLiteManager()
-    
-    let queue:FMDatabaseQueue
-    
-    init() {
-        
-        let dbPath = (NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.UserDomainMask, true).last! as NSString).stringByAppendingPathComponent(dbName)
-        
-        queue = FMDatabaseQueue(path: dbPath)
- 
-    }
-    
+//    static let sheradManager = SQLiteManager()
+//    
+//    let queue:FMDatabaseQueue
+//    
+//    init() {
+//        
+//        let dbPath = (NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.UserDomainMask, true).last! as NSString).stringByAppendingPathComponent(dbName)
+//        
+//        queue = FMDatabaseQueue(path: dbPath)
+// 
+//    }
+//    
     
     
     
